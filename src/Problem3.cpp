@@ -85,6 +85,7 @@ int getOperand(char *data){
 //Helper Functions end
 
 int solve_tree(struct enode *root){
+	//performs operation
 	int left = 0;
 	int right = 0;
 	if (root == NULL)
