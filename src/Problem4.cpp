@@ -49,7 +49,6 @@ void insert(struct node *root, struct node *insNode) {
 		else
 			insert(root->left, insNode);
 	}
-	return;
 }
 
 void merge(struct node *root1, struct node *root2) {
@@ -62,7 +61,6 @@ void merge(struct node *root1, struct node *root2) {
 		merge(root1, left);
 	if (right != NULL)
 		merge(root1, right);
-	return;
 }
 
 void merge_two_bst(struct node *root1, struct node *root2){

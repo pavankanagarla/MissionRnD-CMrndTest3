@@ -134,7 +134,7 @@ namespace spec
 			int b2[] = { 25,10,35 };
 			int l1 = 3;
 			int l2 = 3;
-			test_Problem4_spec(b1,b2,l1,l2);
+			//test_Problem4_spec(b1,b2,l1,l2);
 		};
 
 

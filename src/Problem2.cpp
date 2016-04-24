@@ -71,24 +71,25 @@ struct node{
 	struct node *right;
 };
 
-int compare(struct node_dll *head, struct node *root) {
-	int t;
+int search(struct node *head, int n) {
 	if (head == NULL)
 		return 0;
-	if (root == NULL)
+	if (head->data == n)
 		return 1;
-	if (compare(head, root->left)) {
-		if (head->data == root->data)
-			if (compare(head->next, root->right))
-				return 1;
-		else
-			return 0;
-	}
-	
+	if (head->data < n) {
+		return search(head->left, n);
+	} else if (head->data > n)
+		return search(head->right, n);
 }
 
 int is_identical(struct node_dll *head, struct node *root){
 	if (head == NULL || root == NULL)
 		return -1;
-	return compare(head, root);
+	while (head != NULL) {
+		if (!search(root, head->data)) {
+			return 0;
+		}
+		head = head->next;
+	}
+	return 1;
 }
