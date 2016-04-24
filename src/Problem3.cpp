@@ -48,7 +48,7 @@ Note :
 
 Difficulty : Medium
 */
-#include <stdlib.h>;
+#include <stdlib.h>
 #include <stdio.h>
 
 //data can be accessed using root->data;
@@ -63,17 +63,66 @@ Helper Functions are optional to write
 */
 //Helper Functions Start
 int isOperator(char *data){
+	if (data[0] == '+' || data[0] == '-' || data[0] == '*') {
+		return 1;
+	}
 	return 0;
 }
 int isOperand(char *data){
+	if (data[0] >= 48 && data[0] <= 57) {
+		return 1;
+	}
 	return 0;
 }
 int getOperand(char *data){
 	//converts data string to an integer "123" => 123
-	return 0;
+	int n = 0;
+	for (int i = 0; data[i] != '\0'; i++) {
+		n = (n * 10) + (data[i] - '0');
+	}
+	return n;
 }
 //Helper Functions end
+
 int solve_tree(struct enode *root){
-    return -1;
+	int left = 0;
+	int right = 0;
+	if (root == NULL)
+		return -1;
+	if (isOperand(root->data)) {
+		if (!(root->right) && !(root->left))
+			return getOperand(root->data);
+		else
+			return -1;
+	}
+	if (isOperator(root->data)) {
+		if (root->data[0] == '+') {
+			left = solve_tree(root->left);
+			right = solve_tree(root->right);
+			if (left != -1 && right != -1)
+				return left + right;
+			else
+				return -1;
+		}
+		else if (root->data[0] == '-') {
+			left = solve_tree(root->left);
+			right = solve_tree(root->right);
+			if (left != -1 && right != -1)
+				return left - right;
+			else
+				return -1;
+		}
+		else if (root->data[0] == '*') {
+			left = solve_tree(root->left);
+			right = solve_tree(root->right);
+			if (left != -1 && right != -1)
+				return left * right;
+			else
+				return -1;
+		}
+		else
+			return -1;
+	}
+
 }
 
